@@ -24,14 +24,15 @@ class Plotter(QMainWindow, Ui_MainWindow):
     def run(self):
         self.graphicsView.clear()
         function = self.lineEdit.text()
-        xs = [x / 100 for x in range(-1000, 1001)]
+        xs = list()
         ys = list()
-        for x in xs:
+        for x in (x / 100 for x in range(-1000, 1001)):
             try:
                 y = eval(function)
-                ys.append(y)
+                ys.append(float(y))
+                xs.append(x)
             except Exception:
-                xs.remove(x)
+                pass
         self.graphicsView.plot(xs, ys)
 
 
